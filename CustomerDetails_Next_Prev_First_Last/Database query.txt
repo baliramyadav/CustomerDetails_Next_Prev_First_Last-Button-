@@ -1,0 +1,25 @@
+
+---Create a table that name is tblCustomer---
+Create Table tblCustomer
+(
+Custid Int Constraint Custid_PK Primary Key, 
+Name Varchar(50), 
+Balance Money, 
+City Varchar(50), 
+Status Bit Default 1
+)
+Insert into tblCustomer values(1,'Santosh',6522.00,'Varanasi',1)
+Insert into tblCustomer values(2,'Nick Rimando',1022.00,'New York',1)
+Insert into tblCustomer values(3,'Fabian Johnson',182.00,'Paris',1)
+Insert into tblCustomer values(4,'Brad Davis',8522.00,'California',1)
+Insert into tblCustomer values(5,'Komal',2572.00,'Pune',1)
+Insert into tblCustomer values(6,'Smitha',1922.00,'Kanpur',1)
+Insert into tblCustomer values(7,'Brijesh',670.00,'Allahabad',1)
+Insert into tblCustomer values(8,'Gyanchand',322.00,'Civil Line',1)
+Insert into tblCustomer values(9,'Ajay Kumar',4522.00,'Noida',1)
+Insert into tblCustomer values(10,'Baba',79080.00,'Bhadohi',1)
+Insert into tblCustomer values(11,'coder',180.00,'India',0)
+
+select * from tblCustomer
+
+Select Custid, Name, Balance, City, Status From tblCustomer Order By Custid

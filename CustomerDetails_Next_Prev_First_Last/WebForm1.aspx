@@ -53,6 +53,24 @@
                 </tr>
             </table>
 
+
+            <div class="table">
+                <h3>Customer List</h3>
+                <hr />
+                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="false" AllowPaging="true"
+                     PageSize="5" OnPageIndexChanging="GridView1_PageIndexChanging" >
+                    <Columns>
+                        <asp:BoundField DataField="Custid" HeaderText="Customer ID" />
+                        <asp:BoundField DataField="Name" HeaderText=" Customer Name" />
+                        <asp:BoundField DataField="Balance" HeaderText="Balance(Rs.)"  />
+                        <asp:BoundField DataField="City" HeaderText="City" />
+                        <%--<asp:BoundField DataField="Status" HeaderText="Status" />--%>
+                    </Columns>
+                    <PagerSettings Mode="Numeric" />
+
+                </asp:GridView>
+                  </div>
+
         </div>
     </form>
 </body>

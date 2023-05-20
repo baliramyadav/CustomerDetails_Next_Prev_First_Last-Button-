@@ -15,23 +15,29 @@ namespace CustomerDetails_Next_Prev_First_Last
     {
         DataSet ds;
         int RowIndex;
-        string constr = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
+        //string constr = ConfigurationManager.ConnectionStrings["cs"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
-        {
-            if (Session["CustomerDS"] == null)
-            {
-                SqlDataAdapter da=new SqlDataAdapter("Select Custid, Name, Balance, City, Status From tblCustomer Order By Custid", constr);
-                ds = new DataSet();
-                da.Fill(ds,"tblCustomer");
-                Session["CustomerDS"] = ds;
-                Session["RowIndex"] = 0;
-                ShowData();
-            }
-            else
-            {
-                ds = (DataSet)Session["CustomerDS"];
-                RowIndex = (int)Session["RowIndex"];
-            }
+        {            
+                if (Session["CustomerDS"] == null)
+                {
+                    SqlDataAdapter da = new SqlDataAdapter("Select Custid, Name, Balance, City, Status From tblCustomer Order By Custid", ReadCS.ConStr);
+                    ds = new DataSet();
+                    da.Fill(ds,"tblCustomer");
+                    Session["CustomerDS"] = ds;
+                    Session["RowIndex"] = 0;
+                    ShowData();
+                }
+                else
+                {
+                    ds = (DataSet)Session["CustomerDS"];
+                    RowIndex = (int)Session["RowIndex"];
+                }
+            LoadData();
+        }
+        private void LoadData()
+        {            
+            GridView1.DataSource = ds;
+            GridView1.DataBind();           
         }
         private void ShowData()
         {
@@ -79,6 +85,12 @@ namespace CustomerDetails_Next_Prev_First_Last
         {
             RowIndex = ds.Tables[0].Rows.Count - 1;
             ShowData();
+        }
+
+        protected void GridView1_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            GridView1.PageIndex=e.NewPageIndex;
+            LoadData();
         }
     }
 }
